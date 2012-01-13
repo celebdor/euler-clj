@@ -1,0 +1,9 @@
+# euler
+
+This is a clojure project in which I'll be adding solutions to the problems described in http://projecteuler.net/
+
+## License
+
+Copyright (C) 2011 FIXME
+
+Distributed under the Eclipse Public License, the same as Clojure.
