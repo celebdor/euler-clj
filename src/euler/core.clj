@@ -22,16 +22,18 @@
         0 false
         1 false
         2 true
-        (= 0 (count (filter #(= 0 (rem x %)) (range 2 (+ 1 (Math/sqrt x))))))))
+        (= 0 (count (filter #(zero? (rem x %)) (range 2 (+ 1 (Math/sqrt x))))))))
 
 (defn primes-sieve [n]
-    (let [integers (range 2 (+ n 1))
-          divisible? (fn [x y] (= 0 (rem x y)))]
-        (loop [prime 2 remaining (doall (remove #(divisible? % 2) integers)) primes []]
-            (if (empty? remaining)
-                primes
-                (recur (first remaining) (doall (remove #(divisible? % prime) remaining)) (cons prime primes))))))
-    
+    (let [integers (range 3 (+ n 1) 2)
+          divisible? (fn [x y] (zero? (rem x y)))]
+        (loop [prime 2 remaining integers primes []]
+            (if (> (* prime prime) n)
+                (concat primes remaining)
+                (do
+                    (recur (first (remove #(= prime %) remaining)) (doall (remove #(divisible? % prime) remaining)) (conj primes prime))
+                )))))
+
 
 (defn nth-prime [n]
     (loop [number 2 index 1]
@@ -89,4 +91,4 @@
 
 
 (defn problem10 []
-    (reduce +' (filter prime? (range 2 2000001))))
+    (apply + (primes-sieve 200000)))

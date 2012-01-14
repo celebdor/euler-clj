@@ -26,3 +26,9 @@
 (deftest test-problem8
   (is true (= (problem8) 40824)))
 
+(deftest test-problem9
+  (is true (= (problem9) 31875000)))
+
+(deftest test-problem10
+  (is true (= (problem10) 142913828922)))
+
