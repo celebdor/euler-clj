@@ -30,9 +30,8 @@
         (loop [prime 2 remaining integers primes []]
             (if (> (* prime prime) n)
                 (concat primes remaining)
-                (do
-                    (recur (first (remove #(= prime %) remaining)) (doall (remove #(divisible? % prime) remaining)) (conj primes prime))
-                )))))
+                (recur (first (remove #(= prime %) remaining)) (doall (remove #(divisible? % prime) remaining)) (conj primes prime))
+                ))))
 
 
 (defn nth-prime [n]
